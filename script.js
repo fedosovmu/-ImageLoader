@@ -6,10 +6,14 @@ function getImg(x, y) {
     return img
 }
 
+const columnsCount = 2;
+const rowsCount = 2;
+const oneImageSize = 800;
+
 var body = document.getElementsByTagName('body')[0];
 var canvas = document.createElement('canvas');
-canvas.setAttribute('width', 2800);
-canvas.setAttribute('height', 2800);
+canvas.setAttribute('width', columnsCount * oneImageSize);
+canvas.setAttribute('height', rowsCount * oneImageSize);
 body.appendChild(canvas);
 var ctx = canvas.getContext('2d');
 ctx.fillStyle = "#ff9c38";
@@ -17,8 +21,6 @@ ctx.fillRect(0, 0, 800, 800);
 
 var images = [];
 var loadedImagesCount = 0;
-const columnsCount = 2;
-const rowsCount = 1;
 for (var column = 0; column < columnsCount; column++) {
     for (var row = 0; row < rowsCount; row++) {
         const elementSize = 630;
@@ -40,8 +42,8 @@ function allImagesLoaded() {
     for (var column = 0; column < columnsCount; column++) {
         for (var row = 0; row < rowsCount; row++) {
             const elementSize = 798;
-            var x = column * elementSize;
-            var y = row * elementSize;
+            var x = row * elementSize;
+            var y = column * elementSize;
             var i = row * rowsCount + column;
             var img = images[i];
             ctx.drawImage(img, x, y);
